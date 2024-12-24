@@ -13,13 +13,17 @@ RUN apt-get update && apt-get install -y \
     libglu1-mesa \
     && rm -rf /var/lib/apt/lists/*
 
-# Change to vscode user
-USER vscode
- 
+# Create and set up proper ownership for vscode user directories
+RUN mkdir -p /home/vscode && \
+    chown -R vscode:vscode /home/vscode
+
 # Define variables
-ARG FLUTTER_SDK=~/flutter
+ARG FLUTTER_SDK=/home/vscode/flutter
 ARG FLUTTER_VERSION=3.27.1
 ARG APP=/app/
+
+# Switch to vscode user
+USER vscode
 
 # Git clone flutter repository
 RUN git clone https://github.com/flutter/flutter.git $FLUTTER_SDK
