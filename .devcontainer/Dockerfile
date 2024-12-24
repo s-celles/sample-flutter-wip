@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 USER vscode
  
 # Define variables
-ARG FLUTTER_SDK=/usr/local/flutter
+ARG FLUTTER_SDK=~/flutter
 ARG FLUTTER_VERSION=3.27.1
 ARG APP=/app/
 
