@@ -47,9 +47,8 @@ RUN git fetch && \
 # Initialize Flutter (this will download necessary dependencies)
 RUN flutter precache
 
-# Now switch to stable channel
-RUN flutter channel stable && \
-    flutter doctor -v
+# Switch to stable channel
+RUN flutter channel stable
 
 # Download Android Command line tools
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
@@ -62,6 +61,9 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
 # Accept licenses and install Android build tools and platform tools
 RUN yes | sdkmanager --licenses && \
     sdkmanager "build-tools;33.0.0" "platform-tools" "platforms;android-33"
+
+# Now run doctor to verify the complete setup
+RUN flutter doctor -v
 
 # Return to home directory
 WORKDIR /home/vscode
