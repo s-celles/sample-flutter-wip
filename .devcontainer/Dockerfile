@@ -26,8 +26,10 @@ ARG FLUTTER_SDK=/home/vscode/flutter
 ARG FLUTTER_VERSION=3.27.1
 ARG APP=/app/
 
-# Set up Android SDK
-ENV ANDROID_SDK_ROOT=/usr/lib/android-sdk
+# Set up Android SDK in user's home directory
+ENV ANDROID_SDK_ROOT=/home/vscode/android-sdk
+RUN mkdir -p ${ANDROID_SDK_ROOT} && \
+    chown -R vscode:vscode ${ANDROID_SDK_ROOT}
 ENV PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools
 
 # Switch to vscode user
