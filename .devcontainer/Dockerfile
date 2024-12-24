@@ -3,22 +3,17 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Update and install required packages
+# Update and install required packages (removed GUI-related packages)
 RUN apt-get update && apt-get install -y \
     git \
     curl \
     wget \
     unzip \
     xz-utils \
-    libglu1-mesa \
     clang \
     cmake \
     ninja-build \
     pkg-config \
-    libgtk-3-dev \
-    liblzma-dev \
-    chromium-browser \
-    android-sdk \
     openjdk-11-jdk \
     && rm -rf /var/lib/apt/lists/*
 
@@ -30,9 +25,6 @@ RUN mkdir -p /home/vscode && \
 ARG FLUTTER_SDK=/home/vscode/flutter
 ARG FLUTTER_VERSION=3.27.1
 ARG APP=/app/
-
-# Set up Chrome executable path
-ENV CHROME_EXECUTABLE=/usr/bin/chromium-browser
 
 # Set up Android SDK
 ENV ANDROID_SDK_ROOT=/usr/lib/android-sdk
