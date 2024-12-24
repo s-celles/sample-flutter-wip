@@ -22,8 +22,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Add non-root user to the image
-# RUN groupadd --gid $USER_GID $USERNAME \
-#  	&& useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
+RUN groupadd --gid $USER_GID $USERNAME \
+  	&& useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME
 #  	&& echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
 #  	&& chmod 0440 /etc/sudoers.d/$USERNAME \
 #  	&& su $USERNAME \
