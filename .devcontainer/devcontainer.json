@@ -6,10 +6,20 @@
     "customizations": {
         "vscode": {
             "extensions": [
-				"dart-code.flutter",
-				"alexisvt.flutter-snippets"
+                "dart-code.flutter",
+                "dart-code.dart-code",
+                "alexisvt.flutter-snippets",
+                "nash.awesome-flutter-snippets"
             ]
         }
     },
-    "remoteUser": "vscode"
+    "remoteUser": "vscode",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true
+        }
+    }
 }
