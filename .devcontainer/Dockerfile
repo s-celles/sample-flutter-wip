@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y \
     libglu1-mesa \
     && rm -rf /var/lib/apt/lists/*
 
-# Change to daytona user
-USER daytona
+# Change to vscode user
+USER vscode
  
 # Define variables
 ARG FLUTTER_SDK=/usr/local/flutter
