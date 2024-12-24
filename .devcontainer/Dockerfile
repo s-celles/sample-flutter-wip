@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Update and install required packages (removed GUI-related packages)
+# Update and install required packages
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -36,15 +36,20 @@ USER vscode
 # Git clone flutter repository
 RUN git clone https://github.com/flutter/flutter.git $FLUTTER_SDK
 
+# Setup the flutter path as an enviromental variable
+ENV PATH="$FLUTTER_SDK/bin:$FLUTTER_SDK/bin/cache/dart-sdk/bin:${PATH}"
+
 # Change dir to current flutter folder and make a checkout to the specific version
 WORKDIR $FLUTTER_SDK
 RUN git fetch && \
-    git checkout ${FLUTTER_VERSION} && \
-    git switch -c stable && \
-    flutter channel stable
+    git checkout ${FLUTTER_VERSION}
 
-# Setup the flutter path as an enviromental variable
-ENV PATH="$FLUTTER_SDK/bin:$FLUTTER_SDK/bin/cache/dart-sdk/bin:${PATH}"
+# Initialize Flutter (this will download necessary dependencies)
+RUN flutter precache
+
+# Now switch to stable channel
+RUN flutter channel stable && \
+    flutter doctor -v
 
 # Download Android Command line tools
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
@@ -57,9 +62,6 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
 # Accept licenses and install Android build tools and platform tools
 RUN yes | sdkmanager --licenses && \
     sdkmanager "build-tools;33.0.0" "platform-tools" "platforms;android-33"
-
-# Run flutter doctor to verify installation
-RUN flutter doctor -v
 
 # Return to home directory
 WORKDIR /home/vscode
