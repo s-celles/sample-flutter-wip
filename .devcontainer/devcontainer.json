@@ -1,0 +1,15 @@
+{
+    "name": "Flutter Development",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+				"dart-code.flutter",
+				"alexisvt.flutter-snippets"
+            ]
+        }
+    }
+    "remoteUser": "daytona"
+}
