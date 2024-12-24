@@ -3,6 +3,11 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Define build arguments for versions
+ARG FLUTTER_VERSION=3.27.1
+ARG ANDROID_SDK_VERSION=33
+ARG ANDROID_BUILD_TOOLS_VERSION=33.0.0
+
 # Update and install required packages
 RUN apt-get update && apt-get install -y \
     git \
@@ -23,7 +28,6 @@ RUN mkdir -p /home/vscode && \
 
 # Define variables
 ARG FLUTTER_SDK=/home/vscode/flutter
-ARG FLUTTER_VERSION=3.27.1
 ARG APP=/app/
 
 # Set up Android SDK in user's home directory
@@ -46,7 +50,7 @@ WORKDIR $FLUTTER_SDK
 RUN git fetch && \
     git checkout ${FLUTTER_VERSION}
 
-# Initialize Flutter (this will download necessary dependencies)
+# Initialize Flutter
 RUN flutter precache
 
 # Switch to stable channel
@@ -62,7 +66,9 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
 
 # Accept licenses and install Android build tools and platform tools
 RUN yes | sdkmanager --licenses && \
-    sdkmanager "build-tools;33.0.0" "platform-tools" "platforms;android-33"
+    sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
+               "platform-tools" \
+               "platforms;android-${ANDROID_SDK_VERSION}"
 
 # Now run doctor to verify the complete setup
 RUN flutter doctor -v
