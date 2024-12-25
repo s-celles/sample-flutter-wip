@@ -67,9 +67,12 @@ ENV PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT
 USER vscode
 
 # Download and install Flutter SDK directly
-RUN wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz && \
+RUN mkdir -p /home/vscode/tmp && \
+    cd /home/vscode/tmp && \
+    wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz && \
     tar xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -C /home/vscode && \
-    rm flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
+    rm flutter_linux_${FLUTTER_VERSION}-stable.tar.xz && \
+    rm -rf /home/vscode/tmp
 
 # Setup the flutter path as an enviromental variable
 ENV PATH="$FLUTTER_SDK/bin:$FLUTTER_SDK/bin/cache/dart-sdk/bin:${PATH}"
