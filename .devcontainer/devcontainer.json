@@ -37,6 +37,7 @@
     },
     "remoteUser": "vscode",
     "containerEnv": {
-        "CHROME_EXECUTABLE": "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+        "CHROME_EXECUTABLE": "/usr/bin/google-chrome"
+        // "CHROME_EXECUTABLE": "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
     }
 }
