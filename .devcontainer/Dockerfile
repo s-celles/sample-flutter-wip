@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG FLUTTER_VERSION=3.27.1
 ARG ANDROID_SDK_VERSION=33
 ARG ANDROID_BUILD_TOOLS_VERSION=33.0.0
-ARG ANDROID_STUDIO_VERSION=2023.1.1.26
+ARG ANDROID_STUDIO_VERSION=2024.2.1.12
 
 # Update and install required packages
 RUN apt-get update && apt-get install -y \
@@ -15,20 +15,19 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     unzip \
-    # xz-utils \
-    # clang \
-    # cmake \
-    # ninja-build \
-    # pkg-config \
-    # openjdk-11-jdk \
-    # libgtk-3-common \
-    # libglu1-mesa \
-    # # Android Studio dependencies
-    # libc6:i386 \
-    # libncurses5:i386 \
-    # libstdc++6:i386 \
-    # lib32z1 \
-    # libbz2-1.0:i386 \
+    xz-utils \
+    clang \
+    cmake \
+    ninja-build \
+    pkg-config \
+    openjdk-11-jdk \
+    libgtk-3-common \
+    libglu1-mesa \
+    libc6-i368 \
+    libncurses5 \
+    libstdc++6 \
+    lib32z1 \
+    libbz2-1.0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Chrome
