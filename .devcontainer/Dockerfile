@@ -24,11 +24,11 @@ RUN apt-get update && apt-get install -y \
     libgtk-3-dev \
     libglu1-mesa \
     # Android Studio dependencies
-    # libc6:i386 \
-    # libncurses5:i386 \
-    # libstdc++6:i386 \
-    # lib32z1 \
-    # libbz2-1.0:i386 \
+    libc6:i386 \
+    libncurses5:i386 \
+    libstdc++6:i386 \
+    lib32z1 \
+    libbz2-1.0:i386 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Chrome
