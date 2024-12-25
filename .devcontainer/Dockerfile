@@ -87,13 +87,13 @@ RUN mkdir -p /home/vscode/tmp && \
     cd /home/vscode/tmp && \
     wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O cmdline-tools.zip && \
     unzip cmdline-tools.zip && \
+    mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     mv cmdline-tools latest && \
     mv latest ${ANDROID_SDK_ROOT}/cmdline-tools/ && \
     rm cmdline-tools.zip && \
-    rm -rf /home/vscode/tmp
-
-# Accept licenses and install Android build tools and platform tools
-RUN yes | sdkmanager --licenses && \
+    rm -rf /home/vscode/tmp && \
+    export PATH=${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${PATH} && \
+    yes | sdkmanager --licenses && \
     sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
                "platform-tools" \
                "platforms;android-${ANDROID_SDK_VERSION}"
