@@ -28,7 +28,7 @@ RUN apt-get install -y \
     pkg-config \
     openjdk-11-jdk \
     libgtk-3-dev \
-    libglu1-mesa-dev \
+    libglu1-mesa \
     # Android Studio dependencies
     libc6:i386 \
     libncurses5:i386 \
