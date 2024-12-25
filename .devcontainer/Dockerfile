@@ -66,18 +66,15 @@ ENV PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT
 # Switch to vscode user
 USER vscode
 
-# Git clone flutter repository
-RUN git clone https://github.com/flutter/flutter.git $FLUTTER_SDK
+# Download and install Flutter SDK directly
+RUN wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz && \
+    tar xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz -C /home/vscode && \
+    rm flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
 
 # Setup the flutter path as an enviromental variable
 ENV PATH="$FLUTTER_SDK/bin:$FLUTTER_SDK/bin/cache/dart-sdk/bin:${PATH}"
 
-# Change dir to current flutter folder and make a checkout to the specific version
-WORKDIR $FLUTTER_SDK
-RUN git fetch && \
-    git checkout ${FLUTTER_VERSION}
-
-# Initialize Flutter and fix channel
+# Initialize Flutter
 RUN flutter precache && \
     flutter channel stable && \
     flutter upgrade
