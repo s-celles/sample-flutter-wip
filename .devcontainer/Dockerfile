@@ -15,20 +15,20 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     unzip \
-    xz-utils \
-    clang \
-    cmake \
-    ninja-build \
-    pkg-config \
-    openjdk-11-jdk \
-    libgtk-3-common \
-    libglu1-mesa \
-    # Android Studio dependencies
-    libc6:i386 \
-    libncurses5:i386 \
-    libstdc++6:i386 \
-    lib32z1 \
-    libbz2-1.0:i386 \
+    # xz-utils \
+    # clang \
+    # cmake \
+    # ninja-build \
+    # pkg-config \
+    # openjdk-11-jdk \
+    # libgtk-3-common \
+    # libglu1-mesa \
+    # # Android Studio dependencies
+    # libc6:i386 \
+    # libncurses5:i386 \
+    # libstdc++6:i386 \
+    # lib32z1 \
+    # libbz2-1.0:i386 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Chrome
