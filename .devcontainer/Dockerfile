@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     openjdk-11-jdk \
     libgtk-3-common \
     libglu1-mesa \
-    libc6-i368 \
+    libc6-i386 \
     libncurses5 \
     libstdc++6 \
     lib32z1 \
