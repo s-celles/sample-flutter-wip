@@ -83,12 +83,14 @@ RUN flutter precache && \
     flutter upgrade
 
 # Download Android Command line tools
-RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
+RUN mkdir -p /home/vscode/tmp && \
+    cd /home/vscode/tmp && \
     wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O cmdline-tools.zip && \
     unzip cmdline-tools.zip && \
     mv cmdline-tools latest && \
     mv latest ${ANDROID_SDK_ROOT}/cmdline-tools/ && \
-    rm cmdline-tools.zip
+    rm cmdline-tools.zip && \
+    rm -rf /home/vscode/tmp
 
 # Accept licenses and install Android build tools and platform tools
 RUN yes | sdkmanager --licenses && \
