@@ -9,14 +9,8 @@ ARG ANDROID_SDK_VERSION=33
 ARG ANDROID_BUILD_TOOLS_VERSION=33.0.0
 ARG ANDROID_STUDIO_VERSION=2023.1.1.26
 
-# Add required repositories and update
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository -y ppa:ubuntu-desktop/ubuntu-desktop-preview && \
-    apt-get update
-
 # Update and install required packages
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
     git \
     curl \
     wget \
