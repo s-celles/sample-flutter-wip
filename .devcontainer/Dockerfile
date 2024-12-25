@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     ninja-build \
     pkg-config \
     openjdk-11-jdk \
+    libgtk-3-common \
     && rm -rf /var/lib/apt/lists/*
 
 # Create and set up proper ownership for vscode user directories
