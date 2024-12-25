@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
     ninja-build \
     pkg-config \
     openjdk-11-jdk \
-    libgtk-3-dev \
+    libgtk-3-common \
     libglu1-mesa \
     # Android Studio dependencies
     libc6:i386 \
